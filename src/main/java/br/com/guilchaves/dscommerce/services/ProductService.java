@@ -3,6 +3,8 @@ package br.com.guilchaves.dscommerce.services;
 import br.com.guilchaves.dscommerce.dto.ProductDTO;
 import br.com.guilchaves.dscommerce.entities.Product;
 import br.com.guilchaves.dscommerce.repository.ProductRepository;
+import br.com.guilchaves.dscommerce.services.exceptions.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,7 +25,9 @@ public class ProductService {
 
     @Transactional(readOnly = true)
     public ProductDTO findById(Long id) {
-        Product product = repository.findById(id).get();
+        Product product = repository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Resource not found")
+        );
         return new ProductDTO(product);
     }
 
@@ -38,14 +42,22 @@ public class ProductService {
 
     @Transactional
     public ProductDTO update(Long id, ProductDTO dto) {
-        Product entity = repository.getReferenceById(id);
-        copyDtoToEntity(dto, entity);
-        entity = repository.save(entity);
-        return new ProductDTO(entity);
+        try {
+            Product entity = repository.getReferenceById(id);
+            copyDtoToEntity(dto, entity);
+            entity = repository.save(entity);
+            return new ProductDTO(entity);
+        } catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException("Resource not found");
+        }
+
     }
 
     @Transactional
     public void delete(Long id) {
+        if(!repository.existsById(id)){
+            throw new ResourceNotFoundException("Resource not found");
+        }
         repository.deleteById(id);
     }
 
