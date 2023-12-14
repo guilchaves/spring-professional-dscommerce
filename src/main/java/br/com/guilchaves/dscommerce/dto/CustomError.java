@@ -2,7 +2,7 @@ package br.com.guilchaves.dscommerce.dto;
 
 import java.time.Instant;
 
-public class CustomError{
+public class CustomError {
 
     private Instant timestamp;
     private Integer status;
