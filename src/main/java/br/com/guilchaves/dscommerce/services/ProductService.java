@@ -20,4 +20,10 @@ public class ProductService {
         Page<Product> result = repository.findByNameContainingIgnoreCase(name, pageable);
         return result.map(ProductDTO::new);
     }
+
+    @Transactional(readOnly = true)
+    public ProductDTO findById(Long id){
+        Product product = repository.findById(id).get();
+        return new ProductDTO(product);
+    }
 }
