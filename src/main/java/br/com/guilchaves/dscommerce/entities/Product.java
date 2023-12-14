@@ -87,6 +87,7 @@ public class Product implements Serializable {
         return categories;
     }
 
+
     public Set<OrderItem> getItems() {
         return items;
     }

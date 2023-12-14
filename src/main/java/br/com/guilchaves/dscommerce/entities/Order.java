@@ -68,6 +68,10 @@ public class Order implements Serializable {
         this.client = client;
     }
 
+    public Payment getPayment() {
+        return payment;
+    }
+
     public Set<OrderItem> getItems() {
         return items;
     }
