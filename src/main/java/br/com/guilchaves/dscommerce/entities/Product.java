@@ -29,6 +29,9 @@ public class Product implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 
+    @OneToMany
+    private Set<OrderItem> items = new HashSet<>();
+
     public Product() {
     }
 
@@ -82,6 +85,10 @@ public class Product implements Serializable {
 
     public Set<Category> getCategories() {
         return categories;
+    }
+
+    public Set<OrderItem> getItems() {
+        return items;
     }
 
     @Override
