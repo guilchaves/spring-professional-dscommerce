@@ -3,12 +3,15 @@ package br.com.guilchaves.dscommerce.services;
 import br.com.guilchaves.dscommerce.dto.ProductDTO;
 import br.com.guilchaves.dscommerce.entities.Product;
 import br.com.guilchaves.dscommerce.repository.ProductRepository;
+import br.com.guilchaves.dscommerce.services.exceptions.DatabaseException;
 import br.com.guilchaves.dscommerce.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
@@ -53,12 +56,17 @@ public class ProductService {
 
     }
 
-    @Transactional
+    @Transactional(propagation = Propagation.SUPPORTS)
     public void delete(Long id) {
-        if(!repository.existsById(id)){
+        if (!repository.existsById(id)) {
             throw new ResourceNotFoundException("Resource not found");
         }
-        repository.deleteById(id);
+        try {
+            repository.deleteById(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DatabaseException("Unable to delete the resource with ID " + id
+                    + ". It is associated with other entities.");
+        }
     }
 
     private void copyDtoToEntity(ProductDTO dto, Product entity) {
