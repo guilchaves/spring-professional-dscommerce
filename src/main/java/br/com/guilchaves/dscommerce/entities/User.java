@@ -3,7 +3,7 @@ package br.com.guilchaves.dscommerce.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_user")
@@ -16,6 +16,9 @@ public class User {
     private String email;
     private String phone;
     private LocalDate birthDate;
+
+    @OneToMany(mappedBy = "client")
+    private List<Order> orders = new ArrayList<>();
 
     public User() {
     }
@@ -66,6 +69,10 @@ public class User {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
     }
 
     @Override
