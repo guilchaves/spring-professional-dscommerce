@@ -25,7 +25,7 @@ public class Order implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "client_id")
-    public User client;
+    private User client;
 
     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
     private Payment payment;
@@ -34,6 +34,14 @@ public class Order implements Serializable {
     private Set<OrderItem> items = new HashSet<>();
 
     public Order() {
+    }
+
+    public Order(Long id, Instant moment, OrderStatus status, User client, Payment payment) {
+        this.id = id;
+        this.moment = moment;
+        this.status = status;
+        this.client = client;
+        this.payment = payment;
     }
 
     public Long getId() {
