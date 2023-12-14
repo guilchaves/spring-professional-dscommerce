@@ -22,8 +22,24 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
-    public ProductDTO findById(Long id){
+    public ProductDTO findById(Long id) {
         Product product = repository.findById(id).get();
         return new ProductDTO(product);
+    }
+
+
+    @Transactional
+    public ProductDTO insert(ProductDTO dto) {
+        Product entity = new Product();
+        copyDtoToEntity(dto, entity);
+        entity = repository.save(entity);
+        return new ProductDTO(entity);
+    }
+
+    private void copyDtoToEntity(ProductDTO dto, Product entity) {
+        entity.setName(dto.getName());
+        entity.setDescription(dto.getDescription());
+        entity.setPrice(dto.getPrice());
+        entity.setImgUrl(dto.getImgUrl());
     }
 }

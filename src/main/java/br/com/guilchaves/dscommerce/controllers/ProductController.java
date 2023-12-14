@@ -2,11 +2,15 @@ package br.com.guilchaves.dscommerce.controllers;
 
 import br.com.guilchaves.dscommerce.dto.ProductDTO;
 import br.com.guilchaves.dscommerce.services.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/products")
@@ -30,5 +34,14 @@ public class ProductController {
         return ResponseEntity.ok(dto);
     }
 
-
+    @PostMapping
+    public ResponseEntity<ProductDTO> insert(@RequestBody ProductDTO dto) {
+        dto = service.insert(dto);
+        URI uri = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(dto.getId())
+                .toUri();
+        return ResponseEntity.created(uri).body(dto);
+    }
 }
