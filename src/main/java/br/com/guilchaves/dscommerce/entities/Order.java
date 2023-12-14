@@ -8,7 +8,7 @@ import java.time.Instant;
 import java.util.Objects;
 
 @Entity
-@Table(name = "tb_user")
+@Table(name = "tb_order")
 public class Order implements Serializable{
     @Serial
     private static final long serialVersionUID = 1L;
@@ -23,6 +23,8 @@ public class Order implements Serializable{
     @JoinColumn(name = "client_id")
     public User client;
 
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    private Payment payment;
     public Order() {
     }
 
