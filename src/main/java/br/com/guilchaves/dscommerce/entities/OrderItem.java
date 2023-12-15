@@ -18,6 +18,7 @@ public class OrderItem implements Serializable {
     private OrderItemPK id = new OrderItemPK();
     private Integer quantity;
     private Double price;
+    private String imgUrl;
 
     public OrderItem() {
     }
@@ -59,6 +60,14 @@ public class OrderItem implements Serializable {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     @Override
