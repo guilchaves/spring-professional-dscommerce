@@ -29,6 +29,7 @@ usuários, produtos e categorias.
 - Java
 - Spring Boot
 - Spring Data JPA
+- Spring Security
 - PostgreSQL Driver
 - Bean Validation
 - H2 Database
