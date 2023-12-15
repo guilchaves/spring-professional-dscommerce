@@ -1,6 +1,9 @@
 package br.com.guilchaves.dscommerce.services;
 
+import br.com.guilchaves.dscommerce.dto.CategoryDTO;
 import br.com.guilchaves.dscommerce.dto.ProductDTO;
+import br.com.guilchaves.dscommerce.dto.ProductMinDTO;
+import br.com.guilchaves.dscommerce.entities.Category;
 import br.com.guilchaves.dscommerce.entities.Product;
 import br.com.guilchaves.dscommerce.repository.ProductRepository;
 import br.com.guilchaves.dscommerce.services.exceptions.DatabaseException;
@@ -21,9 +24,9 @@ public class ProductService {
     private ProductRepository repository;
 
     @Transactional(readOnly = true)
-    public Page<ProductDTO> findAll(String name, Pageable pageable) {
+    public Page<ProductMinDTO> findAll(String name, Pageable pageable) {
         Page<Product> result = repository.findByNameContainingIgnoreCase(name, pageable);
-        return result.map(ProductDTO::new);
+        return result.map(ProductMinDTO::new);
     }
 
     @Transactional(readOnly = true)
@@ -74,5 +77,13 @@ public class ProductService {
         entity.setDescription(dto.getDescription());
         entity.setPrice(dto.getPrice());
         entity.setImgUrl(dto.getImgUrl());
+        entity.getCategories().clear();
+
+        for (CategoryDTO cDto : dto.getCategories()){
+            Category c = new Category();
+            c.setId(cDto.getId());
+            c.setName(cDto.getName());
+            entity.getCategories().add(c);
+        }
     }
 }
