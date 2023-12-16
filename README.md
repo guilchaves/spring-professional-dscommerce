@@ -35,7 +35,6 @@ usuários, produtos e categorias.
 - H2 Database
 - Maven
 - Apache Tomcat
-- Docker
 
 ### Preparação de Ambiente
 - **Java 17**: JDK 17 ou superior. Você pode baixar no [site oficial](https://www.oracle.com/java/technologies/downloads/).
