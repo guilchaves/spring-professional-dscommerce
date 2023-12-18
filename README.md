@@ -73,3 +73,23 @@ Download da coleção e variáveis de ambiente:
 - [Collection](https://drive.google.com/file/d/1TjBh5Nu5znqEB-umnf304MMHe8USVLdj/view?usp=sharing)
 - [Environment](https://drive.google.com/file/d/1_L1r4OSXcIJVxGzq-vGHYYP8CpoD5fhD/view?usp=sharing)
  
+#### Endpoints:
+**POST /login** - Autenticação na API.</br>
+
+**GET /categories** - Retorna lista de categorias dos produtos.</br>
+
+**GET /orders/{id}** - Retorna pedido do usuário por id (clientes não podem acessar pedidos de outros clientes). *Protegido por autenticação*.</br>
+
+**POST /orders** - Adiciona novo pedido para cliente logado.</br>
+
+**GET /products** - Retorna lista de produtos.</br>
+
+**GET /products/{id}** - Retorna produto por id.</br>
+
+**POST /products** - Adiciona novo produto. *Protegido por autenticação (Admin).*</br>
+
+**PUT /products/{id}** - Atualiza dados de produto já existente. *Protegido por autenticação (Admin).*</br>
+
+**DELETE /products/{id}** - Remove produto da base de dados. *Protegido por autenticação (Admin).*</br>
+
+**GET /users/me** - Retorna dados do usuário logado. *Protegido por autenticação.*</br>
