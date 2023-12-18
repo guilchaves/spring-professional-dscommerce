@@ -103,12 +103,8 @@ public class User implements UserDetails {
     }
 
     public boolean hasRole(String roleName) {
-        for (Role role : roles) {
-            if (role.getAuthority().equals(roleName)){
-                return true;
-            }
-        }
-        return false;
+        return roles.stream()
+                .anyMatch(role -> role.getAuthority().equals(roleName));
     }
 
     @Override
