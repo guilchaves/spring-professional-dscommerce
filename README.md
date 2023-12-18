@@ -1,22 +1,24 @@
 #   Projeto Final - Sistema de Comércio Eletrônico DSCommerce
 
-## Java Spring Professional
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
+![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
 
-
-### Sobre
 
 Este repositório contém o projeto final do treinamento **Java Spring Professional** ministrado pelo
-professor [Nelio Alves](https://www.udemy.com/user/nelio-alves/), oferecido pela plataforma [DevSuperior](https://devsuperior.com.br/). Este projeto visa criar uma API RESTful de comércio
-eletrônico usando tecnologias Java e Spring.
+professor [Nelio Alves](https://www.udemy.com/user/nelio-alves/), oferecido pela plataforma [DevSuperior](https://devsuperior.com.br/).</br></br>
+Este projeto visa criar uma API RESTful de comércio
+eletrônico usando tecnologias **Java, Spring Boot, Spring Data JPA, Bean Validation, PostgresSQL como banco de dados, Spring Security e JWT para controle de autenticação**.
 
-### Visão Geral
+## Visão Geral do Sistema
 O sistema desenvolvido neste projeto é uma aplicação completa de comércio eletrônico,
 abrangendo cadastros de usuários, produtos e categorias. Cada usuário, seja cliente ou administrador,
 tem sua própria área de interação com o sistema. Os administradores têm acesso à área administrativa para gerenciar
 usuários, produtos e categorias.
 
 
-### Funcionalidades Principais
+## Funcionalidades Principais
 
 - Cadastro e autenticação de usuários com diferentes papéis (cliente, administrador).
 - Catálogo de produtos com capacidade de filtragem por nome.
@@ -24,19 +26,7 @@ usuários, produtos e categorias.
 - Registro de pedidos com status dinâmicos (aguardando pagamento, pago, enviado, entregue, cancelado).
 - Área administrativa para gerenciamento de usuários, produtos e categorias.
 
-### Tecnologias Utilizadas
-
-- Java
-- Spring Boot
-- Spring Data JPA
-- Spring Security
-- PostgreSQL Driver
-- Bean Validation
-- H2 Database
-- Maven
-- Apache Tomcat
-
-### Como executar este projeto
+## Como executar este projeto
 ##### Pré-requisitos:
 - **Java 17**: [JDK 17](https://www.oracle.com/java/technologies/downloads/) ou superior.
 - **IDEs**: [IntelliJ IDEA](https://www.jetbrains.com/idea/download/) ou [Spring Tools](https://spring.io/tools).
@@ -66,30 +56,41 @@ Após a execução bem-sucedida, abra um navegador da web e acesse `http://local
 Acesse `http://localhost:8080/h2-console` para utilizar o console do H2 database.</br>
 
 
-#### Para testar a API no postman:
+## Para testar a API no postman:
 Para importar e exportar dados no postman, consulte a documentação oficial [aqui](https://learning.postman.com/docs/getting-started/importing-and-exporting/importing-data/).
 </br>
 Download da coleção e variáveis de ambiente:
 - [Collection](https://drive.google.com/file/d/1TjBh5Nu5znqEB-umnf304MMHe8USVLdj/view?usp=sharing)
 - [Environment](https://drive.google.com/file/d/1_L1r4OSXcIJVxGzq-vGHYYP8CpoD5fhD/view?usp=sharing)
  
-#### Endpoints:
-**POST /login** - Autenticação na API.</br>
+## Endpoints da API:
 
-**GET /categories** - Retorna lista de categorias dos produtos.</br>
+```
+POST /login - Autenticação na API.
 
-**GET /orders/{id}** - Retorna pedido do usuário por id (clientes não podem acessar pedidos de outros clientes). *Protegido por autenticação*.</br>
+GET /categories - Retorna lista de categorias dos produtos.
 
-**POST /orders** - Adiciona novo pedido para cliente logado.</br>
+GET /orders/{id} - Retorna pedido do usuário por id - clientes não podem acessar pedidos de outros clientes (requer privilégio ADMIN ou CLIENT).
 
-**GET /products** - Retorna lista de produtos.</br>
+POST /orders - Adiciona novo pedido para cliente logado.
 
-**GET /products/{id}** - Retorna produto por id.</br>
+GET /products - Retorna lista de produtos.
 
-**POST /products** - Adiciona novo produto. *Protegido por autenticação (Admin).*</br>
+GET /products/{id} - Retorna produto por id.
 
-**PUT /products/{id}** - Atualiza dados de produto já existente. *Protegido por autenticação (Admin).*</br>
+POST /products - Adiciona novo produto (requer privilégio ADMIN).
 
-**DELETE /products/{id}** - Remove produto da base de dados. *Protegido por autenticação (Admin).*</br>
+PUT /products/{id} - Atualiza dados de produto já existente (requer privilégio ADMIN).
 
-**GET /users/me** - Retorna dados do usuário logado. *Protegido por autenticação.*</br>
+DELETE /products/{id} - Remove produto da base de dados (requer privilégio ADMIN).
+
+GET /users/me - Retorna dados do usuário logado (requer privilégio ADMIN ou CLIENT).
+```
+
+## Autenticação
+A API utiliza o Spring Security para controle de autenticação. Os seguintes papéis estão disponíveis:
+```
+CLIENT -> Papel padrão para usuários autenticados.
+ADMIN -> Papel de administrador para gerenciar produtos (adicionar, atualiza, remove produtos). 
+```
+Para acessar os endpoints protegidos como um usuário ADMIN, forneça as credenciais de autenticação adequadas no cabeçalho da requisição.
