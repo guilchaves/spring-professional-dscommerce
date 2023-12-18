@@ -36,9 +36,40 @@ usuários, produtos e categorias.
 - Maven
 - Apache Tomcat
 
-### Preparação de Ambiente
-- **Java 17**: JDK 17 ou superior. Você pode baixar no [site oficial](https://www.oracle.com/java/technologies/downloads/).
-- **IDEs**: [IntelliJ IDEA]() ou [Spring Tools](https://spring.io/tools).
-
 ### Como executar este projeto
-_EM BREVE_
+##### Pré-requisitos:
+- **Java 17**: [JDK 17](https://www.oracle.com/java/technologies/downloads/) ou superior.
+- **IDEs**: [IntelliJ IDEA](https://www.jetbrains.com/idea/download/) ou [Spring Tools](https://spring.io/tools).
+</br>
+##### Passos:
+1. **Clone o repositório**</br>
+Abra o terminal e navegue até o diretório onde deseja armazenar o projeto. Execute o seguinte comando para clonar o repositório:
+
+```bash
+git clone https://github.com/guilchaves/spring-professional-dscommerce.git
+```
+2. **Abra o projeto no IntelliJ IDEA ou STS:**</br>
+- _IntelliJ IDEA_: Abra o IntelliJ IDEA e selecione "Open" no menu principal. Navegue até o diretório do projeto e selecione o arquivo pom.xml.
+- _Spring Tools Suite_: Abra o STS e selecione "Import...​" > "Existing Maven Projects". Navegue até o diretório do projeto e selecione o arquivo pom.xml.
+
+3. **Baixe as dependências do Maven:**</br>
+Aguarde até que o IntelliJ ou STS baixe automaticamente as dependências do Maven. Isso pode levar algum tempo, dependendo da conexão com a internet.</br>
+</br> 
+4. **Execute o projeto:**</br>
+No projeto, navegue até o arquivo `src/main/java/br/com/guilchaves/dscommerce/DscommerceApplication.java`. Este arquivo contém 
+a classe principal da aplicação Spring Boot.</br>
+- _IntelliJ IDEA_: Clique com o botão direito do mouse no arquivo DscommerceApplication.java e escolha "Run DscommerceApplication".
+- _Spring Tools Suite_: Clique com o botão direito do mouse no projeto no navegador de projetos e escolha "Run As" > "Spring Boot App".
+</br>
+6. **Verifique a Execução:**</br>
+Após a execução bem-sucedida, abra um navegador da web e acesse `http://localhost:8080` (ou a porta configurada, se diferente) para verificar se a aplicação está em execução.</br>
+Acesse `http://localhost:8080/h2-console` para utilizar o console do H2 database.</br>
+
+
+#### Para testar a API no postman:
+Para importar e exportar dados no postman, consulte a documentação oficial [aqui](https://learning.postman.com/docs/getting-started/importing-and-exporting/importing-data/).
+</br>
+Download da coleção e variáveis de ambiente:
+- [Collection](https://drive.google.com/file/d/1TjBh5Nu5znqEB-umnf304MMHe8USVLdj/view?usp=sharing)
+- [Environment](https://drive.google.com/file/d/1_L1r4OSXcIJVxGzq-vGHYYP8CpoD5fhD/view?usp=sharing)
+ 
