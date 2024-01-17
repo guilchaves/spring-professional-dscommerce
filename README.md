@@ -72,7 +72,7 @@ POST /login - Autenticação na API.
 
 GET /categories - Retorna lista de categorias dos produtos.
 
-GET /orders/{id} - Retorna pedido do usuário por id - clientes não podem acessar pedidos de outros clientes (requer privilégio ADMIN ou CLIENT).
+GET /orders/{id} - Retorna pedido do usuário por id - clientes não podem acessar pedidos de outros clientes (requer privilégio ADMIN ou OPERATOR).
 
 POST /orders - Adiciona novo pedido para cliente logado.
 
@@ -86,13 +86,13 @@ PUT /products/{id} - Atualiza dados de produto já existente (requer privilégio
 
 DELETE /products/{id} - Remove produto da base de dados (requer privilégio ADMIN).
 
-GET /users/me - Retorna dados do usuário logado (requer privilégio ADMIN ou CLIENT).
+GET /users/me - Retorna dados do usuário logado (requer privilégio ADMIN ou OPERATOR).
 ```
 
 ## Autenticação
 A API utiliza o Spring Security para controle de autenticação. Os seguintes papéis estão disponíveis:
 ```
-CLIENT -> Papel padrão para usuários autenticados.
+OPERATOR -> Papel padrão para usuários autenticados.
 ADMIN -> Papel de administrador para gerenciar produtos (adicionar, atualiza, remove produtos). 
 ```
 Para acessar os endpoints protegidos como um usuário ADMIN, forneça as credenciais de autenticação adequadas no cabeçalho da requisição.
