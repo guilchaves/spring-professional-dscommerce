@@ -59,6 +59,7 @@ public class ProductService {
 
     }
 
+
     @Transactional(propagation = Propagation.SUPPORTS)
     public void delete(Long id) {
         if (!repository.existsById(id)) {
@@ -66,9 +67,9 @@ public class ProductService {
         }
         try {
             repository.deleteById(id);
-        } catch (DataIntegrityViolationException e) {
-            throw new DatabaseException("Unable to delete the resource with ID " + id
-                    + ". It is associated with other entities.");
+        }
+        catch (DataIntegrityViolationException e) {
+            throw new DatabaseException("Integrity constraint violation");
         }
     }
 
