@@ -6,7 +6,7 @@
 ![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
 
 
-Este repositório contém o projeto final do treinamento **Java Spring Professional** ministrado pelo
+Este repositório contém o projeto final para conclusão do treinamento **Java Spring Professional** ministrado pelo
 professor [Nelio Alves](https://www.udemy.com/user/nelio-alves/), oferecido pela plataforma [DevSuperior](https://devsuperior.com.br/).</br></br>
 Este projeto visa criar uma API RESTful de comércio
 eletrônico usando tecnologias **Java, Spring Boot, Spring Data JPA, Bean Validation, PostgresSQL como banco de dados, Spring Security e JWT para controle de autenticação**.</br>
