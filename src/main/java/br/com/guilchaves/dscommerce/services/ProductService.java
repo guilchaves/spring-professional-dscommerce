@@ -25,7 +25,7 @@ public class ProductService {
 
     @Transactional(readOnly = true)
     public Page<ProductMinDTO> findAll(String name, Pageable pageable) {
-        Page<Product> result = repository.findByNameContainingIgnoreCase(name, pageable);
+        Page<Product> result = repository.searchByName(name, pageable);
         return result.map(ProductMinDTO::new);
     }
 
