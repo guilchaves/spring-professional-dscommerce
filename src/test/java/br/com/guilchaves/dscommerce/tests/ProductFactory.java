@@ -1,5 +1,6 @@
 package br.com.guilchaves.dscommerce.tests;
 
+import br.com.guilchaves.dscommerce.dto.ProductDTO;
 import br.com.guilchaves.dscommerce.entities.Category;
 import br.com.guilchaves.dscommerce.entities.Product;
 
@@ -12,10 +13,15 @@ public class ProductFactory {
         return product;
     }
 
-
     public static Product createProduct(String name) {
         Product product = createProduct();
         product.setName(name);
         return product;
+    }
+
+    public static ProductDTO createProductDTO(){
+        Product product = createProduct();
+        ProductDTO dto = new ProductDTO(product);
+        return dto;
     }
 }
