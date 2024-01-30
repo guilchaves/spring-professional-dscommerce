@@ -11,6 +11,8 @@ professor [Nelio Alves](https://www.udemy.com/user/nelio-alves/), oferecido pela
 Este projeto visa criar uma API RESTful de comércio
 eletrônico usando tecnologias **Java, Spring Boot, Spring Data JPA, Bean Validation, PostgresSQL como banco de dados, Spring Security e JWT para controle de autenticação**.</br>
 
+###### Testes realizados com JUnit, Mockito, REST Assured. JaCoCo utilizado para cobertura de testes.
+
 **Sistema em prod: [DSCommerce](https://dscommerce.onrender.com/products)**
 
 ## Visão Geral do Sistema
