@@ -60,11 +60,54 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.1.0</version> <!--$NO-MVN-MAN-VER$ -->
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.7</version>
+                <configuration>
+                    <excludes>
+                        <exclude>br/com/guilchaves/dscommerce/DscommerceApplication.class</exclude>
+                        <exclude>br/com/guilchaves/dscommerce/config/**</exclude>
+                        <exclude>br/com/guilchaves/dscommerce/entities/**</exclude>
+                        <exclude>br/com/guilchaves/dscommerce/dto/**</exclude>
+                        <exclude>br/com/guilchaves/dscommerce/controllers/**</exclude>
+                        <exclude>br/com/guilchaves/dscommerce/services/exceptions/**</exclude>
+                        <exclude>br/com/guilchaves/dscommerce/util/**</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>jacoco-report</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>target/jacoco-report</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
